@@ -1,0 +1,39 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="onFormSubmit()">
+  <div id="workout-data">
+    <div class="form-group">
+      <label for="WorkoutName" *ngIf="editForm == false">Add Workout Name</label>
+      <label for="WorkoutName" *ngIf="editForm == true">Edit Workout Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="WorkoutName"
+        name="WorkoutName"
+        formControlName="WorkoutName"
+      >
+    </div>
+      <span
+        class="help-block text-danger"
+        *ngIf="
+          !reactiveForm.get('WorkoutName').valid && reactiveForm.get('WorkoutName').touched
+        "
+        >Please enter a valid Workout Name!</span
+      >
+
+    <!-- SUBMIT - button -->
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!reactiveForm.valid"
+    >
+      Submit
+    </button>
+    <button
+    type = 'button'
+    class="btn btn-danger"
+    (click)="cancel()"
+  >
+    Cancel
+  </button>
+  </div>
+</form>
+

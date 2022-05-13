@@ -1,0 +1,22 @@
+<h1>Workout List:</h1>
+<div class="col-md-5">
+<div *ngFor="let w of workoutList; let i = index">
+  <div>
+    <h2>{{i+1}}: {{w}}</h2>
+    <button class="float-right btn btn-success" routerLink= '/workout-list/workout/{{i}}/{{w}}' (click)="viewSelectedWorkout(i)"> View</button>
+    <button class="float-right btn btn-warning" (click)="formControl('edit', i)"> Edit</button>
+    <button class="float-right btn btn-danger" (click)="removeWorkout(i)" > Delete</button>
+  </div>
+</div>
+<div>
+  <br>
+  <br>
+  <button class = "btn btn-primary btn-lg" (click)="formControl('add', -1)">Add New Workout</button>
+</div>
+</div>
+
+
+<div class="col-md-5">
+  <app-workout-form *ngIf="hideForm != true && form == 'add'" (WorkoutName)="addWorkout($event)" (cancelControl)="cancelForm($event)"></app-workout-form>
+  <app-workout-form *ngIf="hideForm != true && form == 'edit'" (WorkoutName)="editWorkoutName($event)" [editForm]="editWorkoutForm" (cancelControl)="cancelForm($event)"></app-workout-form>
+</div>

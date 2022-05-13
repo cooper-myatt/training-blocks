@@ -1,0 +1,111 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="onFormSubmit()">
+  <div id="excercise-data">
+    <div class="form-group">
+      <label for="WorkoutName">Add Exercise Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="WorkoutName"
+        name="WorkoutName"
+        formControlName="WorkoutName">
+    </div>
+      <span
+        class="help-block text-danger"
+        *ngIf="
+          !reactiveForm.get('WorkoutName').valid && reactiveForm.get('WorkoutName').touched
+        "
+        >Please enter a valid Workout Name!</span>
+    <div class="form-group">
+      <label for="minReps">Add Minimum Reps Number</label>
+      <input
+        type="number"
+        class="form-control"
+        id="minReps"
+        name="minReps"
+        formControlName="minReps">
+    </div>
+      <span
+        class="help-block text-danger"
+        *ngIf="
+          !reactiveForm.get('minReps').valid && reactiveForm.get('minReps').touched
+        "
+        >Please enter a valid Minimum Rep Number!</span>
+      <div class="form-group">
+        <label for="minReps">Add Maximum Reps Number</label>
+        <input
+          type="number"
+          class="form-control"
+          id="maxReps"
+          name="maxReps"
+          formControlName="maxReps">
+      </div>
+        <span
+          class="help-block text-danger"
+          *ngIf="
+            !reactiveForm.get('maxReps').valid && reactiveForm.get('maxReps').touched
+          "
+          >Please enter a valid Maximum Reps Number!</span>
+        <div class="form-group">
+          <label for="weight">Add Weight (lbs)</label>
+          <input
+            type="number"
+            class="form-control"
+            id="weight"
+            name="weight"
+            formControlName="weight">
+        </div>
+          <span
+            class="help-block text-danger"
+            *ngIf="
+              !reactiveForm.get('weight').valid && reactiveForm.get('weight').touched
+            "
+            >Please enter a valid Weight!</span>
+          <div class="form-group">
+            <label for="restTime">Add Rest Time (Minutes)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="restTime"
+              name="restTime"
+              formControlName="restTime">
+          </div>
+            <span
+              class="help-block text-danger"
+              *ngIf="
+                !reactiveForm.get('restTime').valid && reactiveForm.get('restTime').touched
+              "
+              >Please enter a valid Rest Time in Minutes!</span>
+              <div class="form-group">
+                <label for="bodyWeight">Body Weight Exercise?</label>
+                <select
+                  class="form-control"
+                  id="bodyWeight"
+                  name="bodyWeight"
+                  formControlName="bodyWeight">
+                  <option disabled [defaultSelected]=true value>Please Select an Option</option>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
+              </select>
+              </div>
+                <span
+                  class="help-block text-danger"
+                  *ngIf="
+                    !reactiveForm.get('bodyWeight').valid && reactiveForm.get('bodyWeight').touched"
+                  >Please enter a valid Rest Time in Minutes!</span>
+    <!-- SUBMIT - button -->
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!reactiveForm.valid"
+    >
+      Submit
+    </button>
+    <button
+    (click)="cancelForm()"
+    type = 'button'
+    class="btn btn-danger"
+  >
+    Cancel
+  </button>
+  </div>
+</form>

@@ -1,0 +1,29 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/workout-list">Workout List</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{workout.workoutName}}</li>
+  </ol>
+</nav>
+<div class="col-md-5">
+<h2>{{workout.workoutName}} Exercises:</h2>
+<div cdkDropList class="workout-list" (cdkDropListDropped)="drop($event)">
+  <div class = workout-card *ngFor="let e of workout.exercises; let i = index" cdkDrag>
+    <h3><strong>{{e.exerciseName}}</strong></h3>
+
+      <h4> {{e.minReps}} - {{e.maxReps}} Reps</h4>
+      <li> Weight: {{e.weight}} lbs</li>
+      <li> Rest Time: {{e.restTimeMinutes}} (Minutes)</li>
+      <li> Body Weight: {{e.isBodyWeight}}</li>
+      <br>
+      <button class="float-right btn btn-warning" (click)="formControl('edit', i)"> Edit</button>
+      <button class="float-right btn btn-danger" (click)="removeExercise(i)" > Delete</button>
+  </div>
+</div>
+
+  <h3 *ngIf="workout.exercises.length === 0"> Currently There are No Exercises Assigned</h3>
+  <br>
+  <button class = "btn btn-primary btn-lg" (click)="showForm = true">Add Exercise</button>
+</div>
+<div class="col-md-5">
+<app-exercise-form *ngIf="showForm" (cancelControl)="cancelForm($event)"></app-exercise-form>
+</div>
